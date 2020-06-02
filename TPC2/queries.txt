@@ -1,0 +1,39 @@
+1 - Nome dos Compositores (Ordem Alfabética)
+
+PREFIX : <http://prc.di.uminho.pt/2020/obrasMusicais#>
+select distinct ?nome where { 
+	?o a :Obra ;
+    	:compositor ?nome .
+    
+} order by ?nome
+
+2 - Titulos das Obras do Tipo (Marcha de Desfile)
+
+PREFIX : <http://prc.di.uminho.pt/2020/obrasMusicais#>
+select distinct ?titulo where { 
+	?o a :Obra .
+    	?o :tipo "Marcha de Desfile".
+	?o :titulo ?titulo .
+    
+}
+
+3 - Para cada obra quantas partituras estão catalogadas
+
+PREFIX : <http://prc.di.uminho.pt/2020/obrasMusicais#>
+select distinct count(distinct ?partitura) where { 
+	?o a :Obra .
+    	?o :contem ?partitura.
+    
+}
+
+4 - Quais os titulos das obras com partituras para bombo
+
+
+PREFIX : <http://prc.di.uminho.pt/2020/obrasMusicais#>
+select distinct ?titulo where { 
+	?o a :Obra .
+	?o :tem ?instrumento .
+	?instrumento :nome "Bombo" .
+	?o :titulo ?titulo .
+    
+}
